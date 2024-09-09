@@ -1,4 +1,3 @@
-import pygame
 import random
 from vector import Vector
 from fish import Fish
@@ -22,29 +21,3 @@ class Flock:
     def draw(self, screen):
         for fish in self.fishes:
             fish.draw(screen)
-
-# Initialize Pygame
-pygame.init()
-screen_size = (800, 600)
-screen = pygame.display.set_mode(screen_size)
-
-# Create the flock of fish
-flock = Flock(10, screen_size)  # A flock with 10 fish
-
-# Main game loop
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    # Update the flock
-    flock.update()
-
-    # Draw the flock
-    screen.fill((0, 0, 0))  # Clear screen with black background
-    flock.draw(screen)
-    pygame.display.flip()
-
-# Quit Pygame
-pygame.quit()
