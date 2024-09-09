@@ -21,3 +21,16 @@ class Fish:
     def draw(self, screen):
         # Tegner fisken på skærmen på dens aktuelle position
         screen.blit(self.image, (self.position.get_x(), self.position.get_y()))
+
+    def screenContainment(self):
+        if self.__position.x < 2 or self.__position.x > self.screen.get_width()-self.fish_img.get_width() - 2:
+            self.velocity.x *= -1
+        if self.__position.y < 2 or self.__position.y > self.screen.get_height()-self.fish_img.get_height() - 2:
+            self.velocity.x *= -1
+        return self.velocity
+    
+    def screenConfinementIt(self):
+        self.d = 50
+        self.velocity.x = -1
+        self.position = 50
+        
