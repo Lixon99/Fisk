@@ -29,8 +29,21 @@ class Fish:
             self.velocity.x *= -1
         return self.velocity
     
-    def screenConfinementIt(self):
-        self.d = 50
-        self.velocity.x = -1
-        self.position = 50
-        
+    def screenConfinementIt(self, d, velocity, position):
+        self.d = d
+        velocity.x = -1
+        position = 50
+        if self.position.x < d:
+            velocity.x = velocity.x + (1 - position.x/d)
+        if position.x < d:
+            velocity.x = velocity.x + (1 - 50/50)
+        if position.x < d:
+            velocity.x = velocity.x + (1 - 40/50)
+        if position.x < d:
+            velocity.x = velocity.x + (1 - 25/50)
+        if position.x < d:
+            velocity.x = velocity.x + (1 - 10/50)
+
+        velocity.y = velocity.x + (1 - 10/50)
+        return velocity.x, velocity.y
+
