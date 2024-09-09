@@ -1,6 +1,7 @@
+import pygame
 import random
 from vector import Vector
-from fish import Fish
+from fish import Fish  
 
 class Flock:
     def __init__(self, num_fish, screen_size):
@@ -11,7 +12,7 @@ class Flock:
         for _ in range(num_fish):
             position = Vector(random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))
             velocity = Vector(random.uniform(-2, 2), random.uniform(-2, 2))
-            fish = Fish(position, velocity, "fisk.png") 
+            fish = Fish(position, velocity, "fish_image.png")  # Assuming a fish image file
             self.fishes.append(fish)
 
     def update(self):

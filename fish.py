@@ -33,15 +33,15 @@ class Fish:
         self.d = 50
         velocity.x = -1
         position = 50
-        if self.position.x < self.d:
+        if self.position.x < d:
             velocity.x = velocity.x + (1 - position.x/d)
-        if position.x < self.d:
+        if position.x < d:
             velocity.x = velocity.x + (1 - 50/50)
-        if position.x < self.d:
+        if position.x < d:
             velocity.x = velocity.x + (1 - 40/50)
-        if position.x < self.d:
+        if position.x < d:
             velocity.x = velocity.x + (1 - 25/50)
-        if position.x < self.d:
+        if position.x < d:
             velocity.x = velocity.x + (1 - 10/50)
 
         velocity.y = velocity.x + (1 - 10/50)

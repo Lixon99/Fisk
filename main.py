@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 running = True
 
 fish = Fish(Vector(400, 300), Vector(1, 1), 'Fisk.png')
-flock = Flock[10, screen_size]
+flock = Flock(10, screen_size)
 
 while running:
     
@@ -38,7 +38,7 @@ while running:
     screen.fill((0, 128, 255))
 
     #Tegn fisken
-    fish.draw(screen)
+    # fish.draw(screen)
 
     #Tegn flock af fisk
     flock.draw(screen)
