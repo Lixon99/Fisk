@@ -38,5 +38,5 @@ class Fish:
     
     def get_distance_to(self, other_fish):
         #Calculate distance to other fishes
-        return self.position.distance_to(other_fish, other_fish.position)
+        return self.position.distance_to(other_fish.position)
 

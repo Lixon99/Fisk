@@ -12,7 +12,8 @@ class Flock:
         for _ in range(num_fish):
             position = Vector(random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))
             velocity = Vector(random.uniform(-2, 2), random.uniform(-2, 2))
-            fish = Fish(position, velocity, "fisk.png")
+            vision_range = random.uniform(50, 150)
+            fish = Fish(position, velocity, "fisk.png", vision_range)
             self.fishes.append(fish)
 
     def update(self):

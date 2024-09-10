@@ -1,3 +1,5 @@
+import math
+
 class Vector:
     def __init__(self, x, y):
         self.__x = x
@@ -35,6 +37,9 @@ class Vector:
             return Vector(self.__x / skalar, self.__y / skalar)
         else:
             raise ValueError("Kan ikke dividere med 0")
+        
+    def distance_to(self, other):
+        return math.sqrt((self.__x - other.__x) ** 2 + (self.__y - self.__y) ** 2)
     
   
 
