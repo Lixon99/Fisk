@@ -12,12 +12,13 @@ class Flock:
         for _ in range(num_fish):
             position = Vector(random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))
             velocity = Vector(random.uniform(-2, 2), random.uniform(-2, 2))
-            fish = Fish(position, velocity, "fish_image.png")  # Assuming a fish image file
+            fish = Fish(position, velocity, "fisk.png")  # Assuming a fish image file
             self.fishes.append(fish)
 
     def update(self):
         for fish in self.fishes:
             fish.update()
+            fish.screenConfinementIt()
 
     def draw(self, screen):
         for fish in self.fishes:
