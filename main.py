@@ -16,7 +16,6 @@ screen = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 running = True
 
-fish = Fish(Vector(400, 300), Vector(1, 1), 'Fisk.png')
 flock = Flock(10, screen_size)
 
 while running:
@@ -28,21 +27,13 @@ while running:
         #Denne event sker typisk når vinduet lukkes
         if event.type == pygame.QUIT:
             running = False
-
-    # opdatere fisken og flock
-    fish.update()
     flock.update()
 
     #Lav en baggrundsfarve
     screen.fill((0, 128, 255))
 
-    #Tegn fisken
-    # fish.draw(screen)
-
     #Tegn flock af fisk
     flock.draw(screen)
-
-    #Her skal animationen være
 
     #Flip, så vores tegning kommer på skærmen.
     pygame.display.flip()
