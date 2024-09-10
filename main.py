@@ -35,7 +35,7 @@ while running:
     #Tegn flock af fisk
     flock.draw(screen)
 
-    #Flip, så vores tegning kommer på skærmen.
+    #Flip, så vores tegning kommer på skærmen.  
     pygame.display.flip()
 
     #60 frames pr sekund. Dvs løkken skal gentages 60 gange i sekundet.

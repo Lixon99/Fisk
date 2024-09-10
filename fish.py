@@ -32,9 +32,9 @@ class Fish:
     
     def screenConfinementIt(self, d=50):
         if self.position.get_x() < d:
-            self.velocity = Vector(self.velocity.get_x() + (1 - self.position.get_x()/d), self.velocity.get_y())
+            self.velocity = Vector(self.velocity.get_x() + ((1 - self.position.get_x()/d)**2), self.velocity.get_y())
         if self.position.get_y() < d:
-            self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + (1 - self.position.get_y()/d))
+            self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + ((1 - self.position.get_y()/d)**2))
     
     def get_distance_to(self, other_fish):
         #Calculate distance to other fishes
