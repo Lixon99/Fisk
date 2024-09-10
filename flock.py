@@ -12,7 +12,7 @@ class Flock:
         for _ in range(num_fish):
             position = Vector(random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))
             velocity = Vector(random.uniform(-2, 2), random.uniform(-2, 2))
-            fish = Fish(position, velocity, "fisk.png")  # Assuming a fish image file
+            fish = Fish(position, velocity, "fisk.png")
             self.fishes.append(fish)
 
     def update(self):
@@ -20,6 +20,22 @@ class Flock:
             fish.update()
             fish.screenConfinementIt()
 
+            neighbors = self.get_neighbors(fish)
+            if len(neighbors) < 3:
+                fish.vision_range *= 1.2
+            else:
+                fish.vision_range *= 0.9
+
     def draw(self, screen):
         for fish in self.fishes:
             fish.draw(screen)
+    
+    def get_neighbors(self, fish):
+        neighbors = []
+        for other in self.fishes:
+            if other != fish:
+                distance = fish.get_distance_to(other)
+                if distance < fish.vision_range:
+                    neighbors.append(other)
+        return neighbors
+

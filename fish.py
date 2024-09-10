@@ -2,11 +2,12 @@ import pygame
 from vector import Vector
 
 class Fish:
-    def __init__(self, position, velocity, image_file):
+    def __init__(self, position, velocity, image_file, vision_range):
         self.position = position  
         self.velocity = velocity  
         self.image = pygame.image.load(image_file)
         self.image = pygame.transform.scale(self.image, (50, 50))
+        self.vision_range = vision_range
 
     def update(self):
         # Opdaterer positionen ved at lægge velocity til
@@ -34,4 +35,8 @@ class Fish:
             self.velocity = Vector(self.velocity.get_x() + (1 - self.position.get_x()/d), self.velocity.get_y())
         if self.position.get_y() < d:
             self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + (1 - self.position.get_y()/d))
+    
+    def get_distance_to(self, other_fish):
+        #Calculate distance to other fishes
+        return self.position.distance_to(other_fish, other_fish.position)
 

@@ -6,8 +6,7 @@ from flock import Flock
 
 # pygame setup
 #initialiserer alle de nødvendige moduler, der kræves for at bruge Pygame. Pygame består af flere moduler, hver med sit eget formål, såsom grafik, lyd, inputhåndtering osv.
-#pygame.init() return
-# erer funktionen to værdier: en tæller af hvor mange moduler, der blev initialiseret korrekt, og en tæller af hvor mange moduler, der mislykkedes i at initialisere.
+#pygame.init() returnerer funktionen to værdier: en tæller af hvor mange moduler, der blev initialiseret korrekt, og en tæller af hvor mange moduler, der mislykkedes i at initialisere.
 pygame.init()
 screen_size = (800, 600)
 screen = pygame.display.set_mode(screen_size)
