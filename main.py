@@ -16,7 +16,7 @@ screen = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 running = True
 
-flock = Flock(10, screen_size)
+flock = Flock(15, screen_size)
 
 while running:
     

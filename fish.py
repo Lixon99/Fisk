@@ -6,8 +6,9 @@ class Fish:
         self.position = position  
         self.velocity = velocity  
         self.image = pygame.image.load(image_file)
-        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.image = pygame.transform.scale(self.image, (75, 75))
         self.vision_range = vision_range
+        self.screen = (800, 600)
 
     def update(self):
         # Opdaterer positionen ved at lægge velocity til
@@ -20,7 +21,6 @@ class Fish:
             self.velocity = Vector(self.velocity.get_x(), -self.velocity.get_y())  # Vend om i y-retning
 
     def draw(self, screen):
-        # Tegner fisken på skærmen på dens aktuelle position
         screen.blit(self.image, (self.position.get_x(), self.position.get_y()))
 
     def screenContainment(self):
@@ -33,9 +33,11 @@ class Fish:
     def screenConfinementIt(self, d=50):
         if self.position.get_x() < d:
             self.velocity = Vector(self.velocity.get_x() + ((1 - self.position.get_x()/d)**2), self.velocity.get_y())
+            self.velocity = Vector(self.velocity.get_x() + ((1 - (self.position.get_x() - self.screen[0]/d))**2), self.velocity.get_y())
         if self.position.get_y() < d:
             self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + ((1 - self.position.get_y()/d)**2))
-    
+            self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + ((1 - (self.position.get_y() - self.screen[0]/d))**2))
+
     def get_distance_to(self, other_fish):
         #Calculate distance to other fishes
         return self.position.distance_to(other_fish.position)

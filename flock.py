@@ -8,10 +8,9 @@ class Flock:
         self.fishes = []
         self.screen_size = screen_size
         
-        # Create multiple fish with random positions and velocities
         for _ in range(num_fish):
             position = Vector(random.randint(0, screen_size[0]), random.randint(0, screen_size[1]))
-            velocity = Vector(random.uniform(-2, 2), random.uniform(-2, 2))
+            velocity = Vector(random.uniform(-4, 4), random.uniform(-4, 4))
             vision_range = random.uniform(50, 150)
             fish = Fish(position, velocity, "fisk.png", vision_range)
             self.fishes.append(fish)
