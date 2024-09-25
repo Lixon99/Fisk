@@ -17,7 +17,7 @@ class Flock:
 
     def update(self):
         for fish in self.fishes:
-            fish.update()
+            fish.update(1)
             fish.screenConfinementIt()
 
             neighbors = self.get_neighbors(fish)

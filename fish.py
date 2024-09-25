@@ -10,9 +10,15 @@ class Fish:
         self.vision_range = vision_range
         self.screen = (800, 600)
 
-    def update(self):
+    def update(self, other_fish):
+        seperation_change = self.separation(True)
+        alignment_change = self.alignment()
+        cohesion_change = self.cohesion()
+
+        self.velocity += seperation_change + alignment_change + cohesion_change
         # Opdaterer positionen ved at lægge velocity til
         self.position = self.position + self.velocity
+        self.position += self.velocity
 
         # Tjek om fisken rammer kanten af skærmen og vend om
         if self.position.get_x() <= 0 or self.position.get_x() >= 750:  # Grænse ved skærmbredde (800 minus fisken på 50px)
@@ -41,4 +47,20 @@ class Fish:
     def get_distance_to(self, other_fish):
         #Calculate distance to other fishes
         return self.position.distance_to(other_fish.position)
+    
+    def separation(self, other_fish, tooClose=50, separation_factor=0.5):
+        separation_vector = Vector(0, 0)
+        for fish in range(other_fish):
+            if fish != self:
+                distance = self.position.distance_to(self.position)
+                if distance < tooClose:
+                    seperation_vector += (self.position - fish.position).normalize() / distance
+        return (separation_vector * separation_factor)
+    
+    def alignment(self, other_fish, visible_distance, alignment_factor):
+        pass
+
+    def cohesion(self, other_fish, visible_distance, cohesion_factor):
+        pass
+
 

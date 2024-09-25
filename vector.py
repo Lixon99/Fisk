@@ -42,7 +42,7 @@ class Vector:
         return math.sqrt((self.__x - other.__x) ** 2 + (self.__y - self.__y) ** 2)
     
   
-
+"""
 v1 = Vector(4, 2)
 v2 = Vector(3, 2)
 
@@ -62,3 +62,4 @@ print(v5)
 print(v6)
 print(v7)
 
+"""
