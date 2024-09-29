@@ -11,13 +11,18 @@ class Fish:
         self.screen = (800, 600)
 
     def update(self, other_fish):
-        seperation_change = self.separation(True)
-        alignment_change = self.alignment()
-        cohesion_change = self.cohesion()
+        separation_change = self.separation(other_fish)
+        alignment_change = self.alignment(other_fish, visible_distance=100, alignment_factor=0.05)
+        cohesion_change = self.cohesion(other_fish, visible_distance=100, cohesion_factor=0.01)
 
-        self.velocity += seperation_change + alignment_change + cohesion_change
+        # self.velocity += separation_change + alignment_change + cohesion_change
+
+        #Begræns hastigheden til et maksimalt niveau
+        max_speed = 5
+        if self.velocity.__getLength__() > max_speed:
+            self.velocity = self.velocity.normalize() * max_speed
+
         # Opdaterer positionen ved at lægge velocity til
-        self.position = self.position + self.velocity
         self.position += self.velocity
 
         # Tjek om fisken rammer kanten af skærmen og vend om
@@ -48,19 +53,19 @@ class Fish:
         #Calculate distance to other fishes
         return self.position.distance_to(other_fish.position)
     
-    def separation(self, other_fish, tooClose=50, separation_factor=0.5):
+    def separation(self, other_fish):
         separation_vector = Vector(0, 0)
-        for fish in range(other_fish):
-            if fish != self:
-                distance = self.position.distance_to(self.position)
-                if distance < tooClose:
-                    seperation_vector += (self.position - fish.position).normalize() / distance
-        return (separation_vector * separation_factor)
+        for fish in other_fish:
+            distance_vector = self.position - fish.position
+            distance = distance_vector.length()
+
+            if distance > 0:
+                separation_vector += distance_vector.normalize() / distance
+        return separation_vector
     
     def alignment(self, other_fish, visible_distance, alignment_factor):
         pass
 
     def cohesion(self, other_fish, visible_distance, cohesion_factor):
         pass
-
 

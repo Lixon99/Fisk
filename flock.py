@@ -17,7 +17,10 @@ class Flock:
 
     def update(self):
         for fish in self.fishes:
-            fish.update(1)
+            neighbors = self.get_neighbors(fish)
+            if neighbors is None:
+                neighbors = []
+            fish.update(neighbors)
             fish.screenConfinementIt()
 
             neighbors = self.get_neighbors(fish)
@@ -38,4 +41,3 @@ class Flock:
                 if distance < fish.vision_range:
                     neighbors.append(other)
         return neighbors
-

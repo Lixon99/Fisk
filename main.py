@@ -19,7 +19,6 @@ running = True
 flock = Flock(15, screen_size)
 
 while running:
-    
     #Så spillet kan lukkes
     #Denne linje henter en liste over alle hændelser (events), som er sket siden sidste gang, løkken kørte. 
     for event in pygame.event.get():
