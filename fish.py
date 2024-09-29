@@ -11,11 +11,9 @@ class Fish:
         self.screen = (800, 600)
 
     def update(self, other_fish):
-        separation_change = self.separation(other_fish)
-        alignment_change = self.alignment(other_fish, visible_distance=100, alignment_factor=0.05)
-        cohesion_change = self.cohesion(other_fish, visible_distance=100, cohesion_factor=0.01)
+        separation_change = self.separation(other_fish, tooClose=50, separation_factor=0.5)
 
-        # self.velocity += separation_change + alignment_change + cohesion_change
+        self.velocity += separation_change
 
         #Begræns hastigheden til et maksimalt niveau
         max_speed = 5
@@ -53,19 +51,18 @@ class Fish:
         #Calculate distance to other fishes
         return self.position.distance_to(other_fish.position)
     
-    def separation(self, other_fish):
+    def separation(self, other_fish, tooClose=50, separation_factor=0.5):
         separation_vector = Vector(0, 0)
         for fish in other_fish:
             distance_vector = self.position - fish.position
             distance = distance_vector.length()
 
-            if distance > 0:
+            if distance > 0 and distance < tooClose:
                 separation_vector += distance_vector.normalize() / distance
-        return separation_vector
+        return separation_vector * separation_factor
     
     def alignment(self, other_fish, visible_distance, alignment_factor):
         pass
 
     def cohesion(self, other_fish, visible_distance, cohesion_factor):
         pass
-
