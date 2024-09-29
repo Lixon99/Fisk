@@ -10,10 +10,11 @@ class Fish:
         self.vision_range = vision_range
         self.screen = (800, 600)
 
-    def update(self, other_fish):
-        separation_change = self.separation(other_fish, tooClose=50, separation_factor=0.5)
-
-        self.velocity += separation_change
+    def update(self, flock_fishes):
+        separation_change = self.separation(flock_fishes, tooClose=50, separation_factor=0.5)
+        alignment_change = self.alignment(flock_fishes, visible_distance=50, alignment_factor=0.5)
+        cohesion_change = self.cohesion(flock_fishes, visible_distance=50, cohesion_factor=0.5)
+        self.velocity += separation_change # + alignment_change + cohesion_change
 
         #Begræns hastigheden til et maksimalt niveau
         max_speed = 5
@@ -47,22 +48,22 @@ class Fish:
             self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + ((1 - self.position.get_y()/d)**2))
             self.velocity = Vector(self.velocity.get_x(), self.velocity.get_y() + ((1 - (self.position.get_y() - self.screen[0]/d))**2))
 
-    def get_distance_to(self, other_fish):
+    def get_distance_to(self, flock_fishes):
         #Calculate distance to other fishes
-        return self.position.distance_to(other_fish.position)
+        return self.position.distance_to(flock_fishes.position)
     
-    def separation(self, other_fish, tooClose=50, separation_factor=0.5):
+    def separation(self, flock_fishes, tooClose=50, separation_factor=0.5):
         separation_vector = Vector(0, 0)
-        for fish in other_fish:
+        for fish in flock_fishes:
             distance_vector = self.position - fish.position
             distance = distance_vector.length()
 
-            if distance > 0 and distance < tooClose:
+            if distance < tooClose:
                 separation_vector += distance_vector.normalize() / distance
-        return separation_vector * separation_factor
+        return (separation_vector * separation_factor)
     
-    def alignment(self, other_fish, visible_distance, alignment_factor):
+    def alignment(self, flock_fishes, visible_distance, alignment_factor):
         pass
 
-    def cohesion(self, other_fish, visible_distance, cohesion_factor):
+    def cohesion(self, flock_fishes, visible_distance, cohesion_factor):
         pass
