@@ -16,25 +16,28 @@ screen = pygame.display.set_mode(screen_size)
 clock = pygame.time.Clock()
 running = True
 
+fish = Fish(Vector(400, 300), Vector(1, 1), 'Fisk.png', vision_range=1)
 flock = Flock(15, screen_size)
 
 while running:
-    #Så spillet kan lukkes
+    
     #Denne linje henter en liste over alle hændelser (events), som er sket siden sidste gang, løkken kørte. 
     for event in pygame.event.get():
 
         #Denne event sker typisk når vinduet lukkes
         if event.type == pygame.QUIT:
             running = False
-    flock.update()
 
     #Lav en baggrundsfarve
     screen.fill((0, 128, 255))
-
-    #Tegn flock af fisk
+    
+    #Tegn fisken
     flock.draw(screen)
 
-    #Flip, så vores tegning kommer på skærmen.  
+    # opdatere fisken
+    flock.update()
+
+    #Flip, så vores tegning kommer på skærmen.
     pygame.display.flip()
 
     #60 frames pr sekund. Dvs løkken skal gentages 60 gange i sekundet.
